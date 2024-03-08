@@ -1,0 +1,47 @@
+class HelloWorld {
+    public static void main(String[] args) {
+        Catalog c=new Catalog("2.1");
+        Student s=new Student("ana",9.50);
+        c.adaugaStudent(s);
+        System.out.println(c);
+    }
+}
+class Student{
+    private String nume;
+    private double nota;
+    public Student(String numele, double nota_student){
+        nume=numele;
+        nota=nota_student;
+    }
+    public String getNume(){
+        return nume;
+    }
+    public double getNota(){
+        return nota;
+    }
+    public String toString(){
+        return nume+" "+nota+" ";
+    }
+}
+class Catalog{
+    private Student [] studenti;
+    private String semigrupa;
+    private static int count=0;
+    public Catalog(String semigrupa_studenti){
+        semigrupa=semigrupa_studenti;
+        studenti=new Student[30];
+    }
+    public void adaugaStudent(Student s){
+        if(count<30){
+            studenti[count]=s;
+            count++;
+        }
+    }
+    public String toString(){
+        String rez="semigrupa:"+semigrupa+"studenti:";
+        for(int i=0;i<count;i++){
+            rez=rez+" "+studenti[i];
+        }
+        return rez;
+    }
+}

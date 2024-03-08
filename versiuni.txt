@@ -1,0 +1,41 @@
+class HelloWorld {
+    public static void main(String[] args) {
+        Fisier x=new Fisier("ana","aaa");
+        System.out.println(x.toString());
+        Fisier y=x.salveazaVersiune();
+        Fisier z=new Fisier("ana2","bbb");
+        x.concateneaza(z);
+        System.out.println(x);
+        System.out.println(y.toString());
+    }
+}
+class Fisier{
+    private String nume;
+    private String continut;
+    private int id;
+    private static int cont=-1;
+    private Fisier versiune;
+    public Fisier(String nume_fisier, String continutul){
+        nume=nume_fisier;
+        continut=continutul;
+        cont++;
+        id=cont;
+        versiune=null;
+    }
+    public Fisier salveazaVersiune(){
+        Fisier x=new Fisier("","");
+        x.nume=this.nume+"bak";
+        x.continut=this.continut;
+        x.versiune=this;
+        return x;
+        
+    }
+    public void concateneaza(Fisier y){
+        Fisier z=this.salveazaVersiune();
+        this.continut=this.continut+" "+y.continut;
+        
+    }
+    public String toString(){
+        return "nume:"+nume+" continut:"+continut+" id:"+id+" versiune:"+versiune;
+    }
+}
